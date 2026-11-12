@@ -53,7 +53,7 @@ bool Cpu::step() {
     const Instruction inst = decode(memory_.read32(pc_));
 
     if (inst.op == Op::INVALID) {
-        std::snprintf(msg, sizeof(msg), "instruccion invalida 0x%08X en pc = 0x%08X",
+        std::snprintf(msg, sizeof(msg), "instrucción inválida 0x%08X en pc = 0x%08X",
                       static_cast<unsigned>(inst.raw), static_cast<unsigned>(pc_));
         error_ = msg;
         return false;

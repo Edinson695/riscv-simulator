@@ -148,7 +148,7 @@ Puntos donde suelen aparecer los errores:
 
 **Listo cuando:** `riscvtest.s` deja 25 (`0x19`) en la dirección 100 (`0x64`).
 
-### Fase 4 — Interfaz de terminal
+### Fase 4 — Interfaz de terminal ✅
 
 Uso: `riscv-sim programa.bin`
 
@@ -160,13 +160,13 @@ Uso: `riscv-sim programa.bin`
 | `mem <inicio> <fin>` | Vuelca bytes del rango | Sí (R5) |
 | `exit` | Sale | Sí |
 | `run` / `continue` | Ejecuta hasta detenerse | Recomendado |
-| `break <dir>` | Punto de parada | Recomendado |
+| `break <dir>` | Punto de parada | No implementado (fuera de lo esencial) |
 | `reset` | Recarga el programa y reinicia el estado | Recomendado |
 | `help` | Lista de comandos | Recomendado |
 
-- [ ] Parseo de números en hexadecimal (`0x...`) y decimal.
-- [ ] Mensajes de error para comandos o argumentos inválidos (sin cerrar el simulador).
-- [ ] Criterio de parada de `run`: breakpoint, instrucción inválida, salto a sí mismo
+- [x] Parseo de números en hexadecimal (`0x...`) y decimal.
+- [x] Mensajes de error para comandos o argumentos inválidos (sin cerrar el simulador).
+- [x] Criterio de parada de `run`: breakpoint, instrucción inválida, salto a sí mismo
       (bucle infinito de fin de programa) y un límite máximo de pasos.
 
 **Listo cuando:** se reproduce la sesión de ejemplo de la sección 4.1 del enunciado.

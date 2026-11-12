@@ -78,7 +78,7 @@ y cada parte se puede probar por separado.
 
 ### Fase 0 — Preparación ✅
 
-- [ ] Crear el repositorio Git y subirlo (GitHub). *(pendiente)*
+- [x] Crear el repositorio Git y subirlo: https://github.com/Edinson695/riscv-simulator
 - [x] Definir sistema de build: CMake (funciona con Visual Studio, VS Code y g++).
 - [x] Fijar estándar C++20 (garantiza el desplazamiento aritmético de enteros con signo).
 - [x] Leer `src/main.cpp` del repo de referencia `Grazen0/toy-simulator`.
@@ -102,10 +102,10 @@ y cada parte se puede probar por separado.
 
 **Listo cuando:** se carga un `.bin` y los primeros words leídos coinciden con la pestaña Memory de CPUlator.
 
-### Fase 2 — Decodificación
+### Fase 2 — Decodificación ✅
 
-- [ ] Extraer campos: opcode `[6:0]`, rd `[11:7]`, funct3 `[14:12]`, rs1 `[19:15]`, rs2 `[24:20]`, funct7 `[31:25]`.
-- [ ] Inmediatos de los 5 formatos con extensión de signo:
+- [x] Extraer campos: opcode `[6:0]`, rd `[11:7]`, funct3 `[14:12]`, rs1 `[19:15]`, rs2 `[24:20]`, funct7 `[31:25]`.
+- [x] Inmediatos de los 5 formatos con extensión de signo:
 
 | Formato | Bits del inmediato |
 |---------|--------------------|
@@ -115,8 +115,8 @@ y cada parte se puede probar por separado.
 | U | `inst[31:12]` << 12 |
 | J | `inst[31]`, `inst[19:12]`, `inst[20]`, `inst[30:21]`, `0` |
 
-- [ ] Identificar la instrucción según la tabla del anexo de este documento.
-- [ ] Codificación no reconocida → resultado "inválida" (no abortar aquí; lo decide la CPU).
+- [x] Identificar la instrucción según la tabla del anexo de este documento.
+- [x] Codificación no reconocida → resultado "inválida" (no abortar aquí; lo decide la CPU).
 
 **Listo cuando:** pruebas unitarias decodifican correctamente words conocidos de cada formato, incluyendo inmediatos negativos.
 
@@ -215,7 +215,6 @@ Cada extra es independiente: se puede cortar aquí en cualquier punto sin afecta
 
 ## 5. Decisiones pendientes
 
-- Nombre y visibilidad del repositorio.
 - Cuál será el cuarto programa de demostración.
 
 ## Anexo — Tabla de codificación

@@ -3,7 +3,7 @@
 Simulador del ISA base RISC-V de 32 bits (RV32I) en C++.
 CS3051 Arquitectura de Computadores 2026-II — Tarea 5.
 
-Estado: **Fase 1 terminada** (memoria, registros y carga de programas). Ver [PLAN.md](PLAN.md).
+Estado: **Fase 2 terminada** (memoria, registros, carga de programas y decodificación). Ver [PLAN.md](PLAN.md).
 
 ## Compilar y ejecutar (Windows, MinGW)
 
@@ -17,6 +17,7 @@ Pruebas:
 
 ```
 .\build\test_state.exe
+.\build\test_decoder.exe
 ```
 
 Sin CMake:

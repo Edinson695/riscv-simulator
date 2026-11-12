@@ -15,6 +15,7 @@ endif()
 add_library(riscv-core STATIC
     src/memory.cpp
     src/cpu.cpp
+    src/decoder.cpp
 )
 target_include_directories(riscv-core PUBLIC include)
 
@@ -25,3 +26,7 @@ enable_testing()
 add_executable(test_state tests/test_state.cpp)
 target_link_libraries(test_state PRIVATE riscv-core)
 add_test(NAME test_state COMMAND test_state)
+
+add_executable(test_decoder tests/test_decoder.cpp)
+target_link_libraries(test_decoder PRIVATE riscv-core)
+add_test(NAME test_decoder COMMAND test_decoder)

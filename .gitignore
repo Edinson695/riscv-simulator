@@ -5,3 +5,7 @@ out/
 *.exe
 *.obj
 *.o
+
+# Archivos temporales de Word
+~$*
+*.bundle

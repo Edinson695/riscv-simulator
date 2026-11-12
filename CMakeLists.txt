@@ -30,3 +30,8 @@ add_test(NAME test_state COMMAND test_state)
 add_executable(test_decoder tests/test_decoder.cpp)
 target_link_libraries(test_decoder PRIVATE riscv-core)
 add_test(NAME test_decoder COMMAND test_decoder)
+
+add_executable(test_execute tests/test_execute.cpp)
+target_link_libraries(test_execute PRIVATE riscv-core)
+target_compile_definitions(test_execute PRIVATE PROGRAMS_DIR="${CMAKE_SOURCE_DIR}/programs")
+add_test(NAME test_execute COMMAND test_execute)

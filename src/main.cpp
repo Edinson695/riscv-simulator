@@ -31,12 +31,30 @@ int main(int argc, char** argv) {
         return 1;
     }
 
-    // Verificación temporal de la Fase 1: mostrar las primeras instrucciones tal
-    // como quedaron en memoria. Se reemplaza por la terminal de comandos (Fase 4).
-    std::printf("pc = 0x%08X\n", static_cast<unsigned>(cpu.pc()));
-    for (uint32_t addr = 0; addr < 32; addr += 4) {
-        std::printf("0x%08X: %08X\n", static_cast<unsigned>(addr),
-                    static_cast<unsigned>(cpu.memory().read32(addr)));
+    // Verificación temporal de la Fase 3: ejecutar hasta que el programa salte a
+    // su propia dirección (así terminan los programas de prueba) y mostrar el
+    // estado final. Se reemplaza por la terminal de comandos (Fase 4).
+    const uint64_t MAX_STEPS = 10'000'000;
+    bool finished = false;
+
+    while (cpu.steps() < MAX_STEPS) {
+        const uint32_t before = cpu.pc();
+        if (!cpu.step()) {
+            std::cerr << "Error: " << cpu.error() << ".\n";
+            break;
+        }
+        if (cpu.pc() == before) {
+            finished = true;
+            break;
+        }
+    }
+
+    std::cout << (finished ? "Programa terminado" : "Ejecucion detenida") << " tras "
+              << cpu.steps() << " instrucciones.\n";
+    std::printf("pc  = 0x%08X\n", static_cast<unsigned>(cpu.pc()));
+    for (uint32_t i = 1; i < 32; i++) {
+        if (cpu.reg(i) != 0)
+            std::printf("x%-2u = 0x%08X\n", static_cast<unsigned>(i), static_cast<unsigned>(cpu.reg(i)));
     }
 
     return 0;

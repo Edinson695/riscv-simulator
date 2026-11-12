@@ -35,8 +35,23 @@ public:
     // PC y registros a cero. No toca la memoria.
     void reset();
 
+    // Ejecuta la instrucción apuntada por el PC: la lee de memoria, la decodifica,
+    // aplica su efecto y actualiza el PC.
+    //
+    // Devuelve false si no se pudo ejecutar (instrucción inválida o PC desalineado).
+    // En ese caso el estado no cambia y error() describe el problema.
+    bool step();
+
+    // Descripción del último error de step(). Vacío si no hubo error.
+    const std::string& error() const { return error_; }
+
+    // Cantidad de instrucciones ejecutadas desde la última carga o reset.
+    uint64_t steps() const { return steps_; }
+
 private:
     uint32_t pc_ = 0;
     std::array<uint32_t, 32> regs_{};
     Memory memory_;
+    std::string error_;
+    uint64_t steps_ = 0;
 };

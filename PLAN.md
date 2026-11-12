@@ -120,7 +120,7 @@ y cada parte se puede probar por separado.
 
 **Listo cuando:** pruebas unitarias decodifican correctamente words conocidos de cada formato, incluyendo inmediatos negativos.
 
-### Fase 3 — Ejecución de las 37 instrucciones
+### Fase 3 — Ejecución de las 37 instrucciones ✅
 
 Orden sugerido (cada grupo se prueba antes de pasar al siguiente):
 

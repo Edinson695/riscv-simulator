@@ -3,7 +3,7 @@
 Simulador del ISA base RISC-V de 32 bits (RV32I) en C++.
 CS3051 Arquitectura de Computadores 2026-II — Tarea 5.
 
-Estado: **Fase 4 terminada** (simulador funcional con terminal de comandos). Ver [PLAN.md](PLAN.md).
+Soporta las 37 instrucciones de RV32I del enunciado, carga binarios crudos en la dirección `0x00000000` y permite ejecutar paso a paso e inspeccionar PC, registros y memoria desde una terminal de comandos. El informe está en `docs/informe.docx`.
 
 ## Compilar (Windows, MinGW)
 
@@ -70,11 +70,15 @@ See you next time...
 
 ## Programas de prueba
 
-| Binario | Fuente | Resultado esperado |
+| Binario | Origen | Resultado esperado |
 |---------|--------|--------------------|
-| `programs/riscvtest.bin` | `riscvtest.s.asm` | 25 (`0x19`) en la dirección `0x64` |
-| `programs/quicksort.bin` | `Quicksort (RISC-V).asm` | `{1, 2, 3, 4, 6, 8, 9}` en `0x1000` |
-| `programs/arbol_simetrico.bin` | `Árbol simétrico (RISC-V).asm` | `a0 = 1` |
+| `programs/riscvtest.bin` | Enunciado (`riscvtest.s`) | 25 (`0x19`) en la dirección `0x64` |
+| `programs/quicksort.bin` | Enunciado (Quicksort) | `{1, 2, 3, 4, 6, 8, 9}` en `0x1000` |
+| `programs/arbol_simetrico.bin` | Enunciado (árbol simétrico) | `a0 = 1` |
+| `programs/demo_bytes.bin` | Propio (`programs/demo_bytes.s`) | `a0 = 0x1FF`; ver los comentarios del fuente |
+| `programs/invalido.bin` | Propio | Una instrucción válida seguida de un word inválido: el segundo `step` reporta el error |
+
+Los binarios de los cuatro programas se generaron con [CPUlator](https://cpulator.01xz.net/?sys=rv32-spim) y los resultados se compararon contra él.
 
 ## Estructura
 
@@ -82,6 +86,6 @@ See you next time...
 |-------------|------------------------------------------------------------------|
 | `src/`      | Implementación (.cpp)                                            |
 | `include/`  | Cabeceras (.hpp)                                                 |
-| `programs/` | Programas de prueba: fuente `.s` y binario crudo `.bin`          |
+| `programs/` | Programas de prueba en binario crudo (`.bin`)                    |
 | `tests/`    | Pruebas unitarias y de integración                               |
 | `docs/`     | Enunciado, informe y material del video                          |

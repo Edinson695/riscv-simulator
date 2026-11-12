@@ -321,6 +321,37 @@ static void test_programs() {
         CHECK(cpu.reg(10) == 1);                   // a0 = 1 (es simétrico)
         CHECK(cpu.reg(2) == 0x10000);
     }
+    {
+        // Programa propio: bytes y halfwords con y sin signo, shifts y comparaciones.
+        Cpu cpu;
+        CHECK(run_program(cpu, "demo_bytes.bin"));
+        CHECK(cpu.reg(9) == 0xFFFFFF80);           // s1: lb
+        CHECK(cpu.reg(18) == 0x00000080);          // s2: lbu
+        CHECK(cpu.reg(19) == 0xFFFFBEEF);          // s3: lh
+        CHECK(cpu.reg(20) == 0x0000BEEF);          // s4: lhu
+        CHECK(cpu.reg(10) == 0x1FF);               // a0: suma de los 4 bytes
+        CHECK(cpu.reg(11) == 1);                   // a1: slt
+        CHECK(cpu.reg(12) == 0);                   // a2: sltu
+        CHECK(cpu.reg(13) == 0xFFFFFFF8);          // a3: srai
+        CHECK(cpu.reg(14) == 0xF);                 // a4: srli
+        CHECK(cpu.reg(15) == 0x1FF0);              // a5: slli
+        CHECK(cpu.reg(16) == 0xFFFF0000);          // a6: xor
+        CHECK(cpu.memory().read32(0x2000) == 0x01FF7F80);
+        CHECK(cpu.memory().read32(0x2004) == 0x0000BEEF);
+        CHECK(cpu.memory().read32(0x2008) == 0x000001FF);
+        CHECK(cpu.memory().read32(0x200C) == 0xFFFF0000);
+        CHECK(cpu.steps() == 48);
+    }
+    {
+        // Programa con una instrucción inválida: ejecuta la primera y se detiene en la segunda.
+        Cpu cpu;
+        cpu.load_program(std::string(PROGRAMS_DIR) + "/invalido.bin");
+        CHECK(cpu.step());
+        CHECK(cpu.reg(5) == 1);
+        CHECK(!cpu.step());
+        CHECK(cpu.pc() == 4);
+        CHECK(cpu.steps() == 1);
+    }
 }
 
 int main() {

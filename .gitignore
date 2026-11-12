@@ -9,3 +9,6 @@ out/
 # Archivos temporales de Word
 ~$*
 *.bundle
+
+# Guion del video (uso personal)
+docs/guion-video.md

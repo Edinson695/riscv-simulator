@@ -11,7 +11,6 @@ else()
     add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
-# Lógica del simulador, compartida por el ejecutable y las pruebas.
 add_library(riscv-core STATIC
     src/memory.cpp
     src/cpu.cpp

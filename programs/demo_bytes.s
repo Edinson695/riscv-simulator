@@ -1,23 +1,3 @@
-# demo_bytes.s - Cuarto programa de demostración.
-#
-# Ejercita lo que los otros tres programas casi no usan: accesos de byte y
-# halfword (sb, sh, lb, lbu, lh, lhu), desplazamientos y comparaciones con y
-# sin signo.
-#
-# Resultados esperados al terminar:
-#   s1 = 0xFFFFFF80   lb  del byte 0x80 (extiende el signo)
-#   s2 = 0x00000080   lbu del mismo byte (rellena con ceros)
-#   s3 = 0xFFFFBEEF   lh  del halfword 0xBEEF
-#   s4 = 0x0000BEEF   lhu del mismo halfword
-#   a0 = 0x000001FF   suma de los 4 bytes: 0x80 + 0x7F + 0xFF + 0x01
-#   a1 = 1            slt : -128 < 128         (con signo)
-#   a2 = 0            sltu: 0xFFFFFF80 < 0x80  (sin signo) es falso
-#   a3 = 0xFFFFFFF8   srai s1, 4  (copia el bit de signo)
-#   a4 = 0x0000000F   srli s1, 28 (entran ceros)
-#   a5 = 0x00001FF0   slli a0, 4
-#   a6 = 0xFFFF0000   xor  s3, s4
-#   Memoria 0x2000: 80 7F FF 01 | EF BE 00 00 | FF 01 00 00 | 00 00 FF FF
-
 .global _start
 _start:
     lui   s0, 0x2            # s0 = 0x2000, dirección del buffer

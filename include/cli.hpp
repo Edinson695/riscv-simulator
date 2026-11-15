@@ -7,10 +7,6 @@
 
 #include "cpu.hpp"
 
-// Terminal interactiva del simulador. Lee comandos línea por línea y deja que el
-// usuario controle la ejecución e inspeccione el estado de la CPU.
-//
-// Recibe los streams por parámetro para poder probarla sin teclado ni pantalla.
 class Cli {
 public:
     Cli(Cpu& cpu, std::string program_path, std::istream& in, std::ostream& out);

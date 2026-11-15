@@ -1,5 +1,3 @@
-// Pruebas de la Fase 3: ejecución de las 37 instrucciones y de los tres
-// programas de prueba completos.
 #include <cstdint>
 #include <cstdio>
 #include <exception>
@@ -17,7 +15,7 @@ static int failures = 0;
         }                                                                  \
     } while (0)
 
-// --- Codificadores, para escribir las pruebas con nombres en vez de hexadecimal ---
+//Codificadores, para escribir las pruebas con nombres en vez de hexadecimal
 
 static uint32_t enc_r(uint32_t f7, uint32_t rs2, uint32_t rs1, uint32_t f3, uint32_t rd) {
     return (f7 << 25) | (rs2 << 20) | (rs1 << 15) | (f3 << 12) | (rd << 7) | 0b0110011;

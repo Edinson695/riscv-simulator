@@ -1,6 +1,3 @@
-// Pruebas de la Fase 2: decodificación.
-// Los words vienen del código máquina de los programas de prueba (riscvtest.s
-// los documenta en sus comentarios) y de codificaciones armadas a mano.
 #include <cstdint>
 #include <cstdio>
 #include <cstring>
@@ -9,8 +6,6 @@
 
 static int failures = 0;
 
-// Comprueba que `raw` se decodifica como la instrucción y los campos indicados.
-// Pasar -1 en un registro significa "no importa" (el formato no usa ese campo).
 static void expect(uint32_t raw, Op op, int rd, int rs1, int rs2, int32_t imm, int line) {
     const Instruction i = decode(raw);
     const bool ok = i.op == op && i.raw == raw && (rd < 0 || i.rd == rd) &&

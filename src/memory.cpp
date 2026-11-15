@@ -11,7 +11,7 @@ uint8_t Memory::read8(uint32_t addr) const {
 void Memory::write8(uint32_t addr, uint8_t value) {
     auto& page = pages_[addr >> PAGE_BITS];
     if (!page)
-        page = std::make_unique<Page>();  // Página nueva, inicializada en ceros.
+        page = std::make_unique<Page>();
 
     (*page)[addr & (PAGE_SIZE - 1)] = value;
 }

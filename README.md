@@ -1,8 +1,5 @@
 # riscv-simulator
 
-Simulador del ISA base RISC-V de 32 bits (RV32I) en C++.
-CS3051 Arquitectura de Computadores 2026-II — Tarea 5.
-
 Soporta las 37 instrucciones de RV32I del enunciado, carga binarios crudos en la dirección `0x00000000` y permite ejecutar paso a paso e inspeccionar PC, registros y memoria desde una terminal de comandos. El informe está en `docs/informe.docx`.
 
 ## Compilar (Windows, MinGW)
@@ -77,8 +74,6 @@ See you next time...
 | `programs/arbol_simetrico.bin` | Enunciado (árbol simétrico) | `a0 = 1` |
 | `programs/demo_bytes.bin` | Propio (`programs/demo_bytes.s`) | `a0 = 0x1FF`; ver los comentarios del fuente |
 | `programs/invalido.bin` | Propio | Una instrucción válida seguida de un word inválido: el segundo `step` reporta el error |
-
-Los binarios de los cuatro programas se generaron con [CPUlator](https://cpulator.01xz.net/?sys=rv32-spim) y los resultados se compararon contra él.
 
 ## Estructura
 

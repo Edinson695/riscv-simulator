@@ -1,4 +1,3 @@
-// Pruebas de la Fase 1: memoria, registros y carga de programas.
 #include <cstdint>
 #include <cstdio>
 #include <fstream>
@@ -19,11 +18,9 @@ static int failures = 0;
 static void test_memory() {
     Memory mem;
 
-    // Memoria sin tocar: lee 0 y no reserva páginas.
     CHECK(mem.read32(0x12345678) == 0);
     CHECK(mem.page_count() == 0);
 
-    // Little-endian: el byte menos significativo va en la dirección más baja.
     mem.write32(0x1000, 0x10200405);
     CHECK(mem.read8(0x1000) == 0x05);
     CHECK(mem.read8(0x1001) == 0x04);

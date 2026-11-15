@@ -54,7 +54,7 @@ Instruction decode(uint32_t raw) {
     const uint32_t funct7 = bits(raw, 31, 25);
 
     switch (opcode) {
-        case 0b0000011: {  // Cargas
+        case 0b0000011: {  
             static constexpr Op ops[8] = {Op::LB,  Op::LH,  Op::LW,      Op::INVALID,
                                           Op::LBU, Op::LHU, Op::INVALID, Op::INVALID};
             inst.op = ops[funct3];
@@ -62,7 +62,7 @@ Instruction decode(uint32_t raw) {
             break;
         }
 
-        case 0b0010011: {  // Aritmética y lógica con inmediato
+        case 0b0010011: {  // aritmetica y lógica con inmediato
             static constexpr Op ops[8] = {Op::ADDI, Op::SLLI, Op::SLTI, Op::SLTIU,
                                           Op::XORI, Op::SRLI, Op::ORI,  Op::ANDI};
             inst.op = ops[funct3];
@@ -91,7 +91,7 @@ Instruction decode(uint32_t raw) {
             inst.imm = imm_u(raw);
             break;
 
-        case 0b0100011: {  // Almacenamiento
+        case 0b0100011: {  // almacenamiento
             static constexpr Op ops[8] = {Op::SB,      Op::SH,      Op::SW,      Op::INVALID,
                                           Op::INVALID, Op::INVALID, Op::INVALID, Op::INVALID};
             inst.op = ops[funct3];
@@ -99,7 +99,7 @@ Instruction decode(uint32_t raw) {
             break;
         }
 
-        case 0b0110011: {  // Aritmética y lógica entre registros
+        case 0b0110011: {  // aritmetica y logica entre registros
             if (funct7 == 0b0000000) {
                 static constexpr Op ops[8] = {Op::ADD, Op::SLL, Op::SLT, Op::SLTU,
                                               Op::XOR, Op::SRL, Op::OR,  Op::AND};
@@ -112,7 +112,7 @@ Instruction decode(uint32_t raw) {
             break;
         }
 
-        case 0b1100011: {  // Saltos condicionales
+        case 0b1100011: {  // saltos condicionales
             static constexpr Op ops[8] = {Op::BEQ, Op::BNE, Op::INVALID, Op::INVALID,
                                           Op::BLT, Op::BGE, Op::BLTU,    Op::BGEU};
             inst.op = ops[funct3];
@@ -132,7 +132,7 @@ Instruction decode(uint32_t raw) {
             break;
 
         default:
-            break;  // Opcode desconocido: queda como INVALID.
+            break;
     }
 
     return inst;

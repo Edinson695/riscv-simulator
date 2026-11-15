@@ -10,7 +10,6 @@
 
 namespace {
 
-// Nombres ABI de los registros, en orden: ABI_NAMES[10] == "a0".
 const char* const ABI_NAMES[32] = {
     "zero", "ra", "sp", "gp", "tp",  "t0",  "t1", "t2", "s0", "s1", "a0",
     "a1",   "a2", "a3", "a4", "a5",  "a6",  "a7", "s2", "s3", "s4", "s5",
@@ -90,7 +89,7 @@ bool parse_register(const std::string& name, uint32_t& index) {
     return false;
 }
 
-}  // namespace
+}
 
 Cli::Cli(Cpu& cpu, std::string program_path, std::istream& in, std::ostream& out)
     : cpu_(cpu), program_path_(std::move(program_path)), in_(in), out_(out) {}
@@ -121,7 +120,7 @@ bool Cli::execute(const std::string& line) {
         args.push_back(word);
 
     if (args.empty())
-        return true;  // Línea vacía: no hacer nada.
+        return true;
 
     const std::string command = args[0];
     args.erase(args.begin());
@@ -203,7 +202,6 @@ void Cli::cmd_run() {
 // regs x5 a0 sp   -> muestra solo los indicados
 void Cli::cmd_regs(const std::vector<std::string>& args) {
     if (args.empty()) {
-        // Los 32 registros en 4 columnas, con su nombre ABI.
         for (uint32_t row = 0; row < 8; row++) {
             for (uint32_t col = 0; col < 4; col++) {
                 const uint32_t i = row + col * 8;

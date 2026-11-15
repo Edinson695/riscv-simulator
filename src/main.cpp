@@ -11,7 +11,6 @@
 
 int main(int argc, char** argv) {
 #ifdef _WIN32
-    // Para que las tildes se vean bien en la consola de Windows.
     SetConsoleOutputCP(CP_UTF8);
 #endif
 
